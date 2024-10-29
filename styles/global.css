@@ -1,13 +1,28 @@
 * {
     padding: 0;
     margin: 0;
+    border: none;
+}
+
+:root {
+    --cor-principal: #000;
+    --cor-fonte: #000;
+    --cor-secundaria: #fff;
 }
 
 header {
     padding: 2%;
+    display: flex;
+    justify-content: space-between;
 }
 
 header h1 {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
+}
+
+header button {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-fonte);
+    font-size: 20px;
 }
