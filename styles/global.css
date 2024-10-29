@@ -6,8 +6,9 @@
 
 :root {
     --cor-principal: #000;
-    --cor-fonte: #000;
     --cor-secundaria: #fff;
+    --cor-terciaria: #ddd;
+    --cor-fonte: #000;
 }
 
 .centralize {
@@ -52,34 +53,41 @@ header h1 {
 .janelaParaCriarTarefa {
     position: fixed;
     left: 2%;
-    top: 40vh;
-    z-index: 1; 
     width: 90%; 
     height: auto; 
     padding: 2%;
-    display: none;
     border-radius: 10px;
-    border: 2px solid var(--cor-secundaria);
+    border: 2px solid var(--cor-principal);
     justify-content: center; 
     align-items: center; 
     transition: 0.5s ease-in-out;
 }
 
 .janelaParaCriarTarefa a {
-    color: var(--cor-secundaria);
+    color: var(--cor-fonte);
     padding-left: 1%;
     font-size: large;
 }
 
 .janelaParaCriarTarefa input {
-    width: 96%;
+    width: 100%;
     margin-top: 1vh;
     display: inline-block;
     padding: 2%;
+    background-color: var(--color-ter);
     padding-left: 2%;
     border-radius: 10px;
-    color: var(--cor-secundaria);
-    caret-color: var(--cor-fonte);
+    color: var(--color-font);
+    caret-color: var(--color-font);
+}
+
+.janelaParaCriarTarefa textarea {
+    width: 96%;
+    height: 15vh;
+    background-color: var(--cor-terciaria);
+    border-radius: 10px;
+    padding: 2%;
+    transition: 0.5s ease-in-out;
 }
 
 .janelaParaCriarTarefa button {
