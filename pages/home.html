@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,27 +9,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/styles/Favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/styles/Favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/styles/Favicon/android-chrome-512x512.png">
-
-    <title>TaskBag</title>
+    <title>taskbag</title>
 </head>
-
-<!-- 
-██████╗  █████╗  ██████╗ 
-██╔══██╗██╔══██╗██╔════╝ 
-██████╔╝███████║██║  ███╗
-██╔══██╗██╔══██║██║   ██║
-██████╔╝██║  ██║╚██████╔╝
-╚═════╝ ╚═╝  ╚═╝ ╚═════╝ 
--->
 <body>
+    
+    <button id="installButton" style="display: none;">Instalar PWA</button>
 
-    <script src="/Scripts/pwa/app.js"></script>
-    <script>
-        window.addEventListener('load',function(){
-            window.location.href = "pages/home.html";
-        });
-    </script>
-
+    <script src="/Scripts/pwa/install.js"></script>
 </body>
-
 </html>
