@@ -151,17 +151,29 @@ header h1 {
     margin-top: 1vh;
 }
 
-.tarefa div {
+.tarefa .divBotaoEHora {
     display: flex;
     justify-content: space-between;
-    width: 14%;
+    width: 80%;
     margin-top: 2vh;
+}
+
+.divBotaoEHora div {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid #fff; */
 }
 
 .tarefa button {
     background-color: var(--cor-principal);
     color: var(--cor-secundaria);
     font-size: 16px;
+}
+
+.tarefa .horaTarefa {
+    display: inline-block;
+    width: 10%;
 }
 
 .btnDeConfiguracoes {
