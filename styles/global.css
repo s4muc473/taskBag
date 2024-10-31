@@ -57,7 +57,7 @@ header h1 {
 
 /* JANELA ABERTA */
 .janelaParaCriarTarefa {
-    width: 88%; 
+    width: 93%; 
     height: 20vh; 
     padding: 2%;
     border-radius: 10px;
@@ -82,9 +82,11 @@ header h1 {
     justify-content: center;
     align-items: center;
     width: 30%;
+    height: 4vh;
     padding: 2%;
     margin-left: 60%;
-    background-color: rgba(128, 128, 128, 0.2);
+    background-color: var(--cor-principal);
+    color: var(--cor-secundaria);
     cursor: pointer;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -130,7 +132,7 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 94%;
+    width: 97%;
     height: 40vh;
     margin-top: 10vh;
 }
