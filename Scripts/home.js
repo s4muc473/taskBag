@@ -59,7 +59,6 @@ function carrregarTarefas() {
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
         }
     }
-
 }
 
 function deletaTarefa(data) {
