@@ -51,7 +51,7 @@ function carrregarTarefas() {
             nomeDaTarefa.innerHTML = `${arrayTarefas[iterador]['title']}`;
 
             const concluir = document.createElement('button');
-            concluir.innerHTML = '<i style="color: springgreen;" class="fa-solid fa-check"></i>';
+            concluir.innerHTML = '<i style="color: springgreen;font-size: 19px;" class="fa-solid fa-check"></i>';
             concluir.addEventListener("click",()=>{
                 deletaTarefa(arrayTarefas[iterador]['title']);
             });
