@@ -6,7 +6,7 @@ function abrirJanelaParaCriarTarefa() {
     if (elementosDaPaginaHome.JanelaParaCriarTarefa().classList.contains('janelaParaCriarTarefaAberta')) {
         aba.innerHTML = 'Fechar';
     } else {
-        aba.innerHTML = 'Abrir';
+        aba.innerHTML = 'Nova Task';
     }
 }
 

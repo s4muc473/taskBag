@@ -81,9 +81,9 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    width: 25%;
     padding: 2%;
-    margin-left: 73%;
+    margin-left: 60%;
     background-color: rgba(128, 128, 128, 0.2);
     cursor: pointer;
     border-bottom-left-radius: 3px;
