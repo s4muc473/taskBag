@@ -30,7 +30,7 @@ if (!localStorage.nvlDoUsuario || localStorage.nvlDoUsuario == 0) {
     localStorage.totalTarefasConcluidas                    = 0;
     localStorage.totalTarefasCriadas                       = 0;
     localStorage.totalTarefasPerdidas                      = 0;
-    localStorage.totalEmProducao                           = 0;
+    localStorage.tarefasEmProducao                           = 0;
 
 
     localStorage.nvlDoUsuario = 1;
@@ -47,4 +47,6 @@ if (!localStorage.nvlDoUsuario || localStorage.nvlDoUsuario == 0) {
 
 console.log(nvlUser)
 
-// LIMITAR AÇÕES DA HOME
+function resetarDados() {
+    localStorage.nvlDoUsuario = 0;
+}
