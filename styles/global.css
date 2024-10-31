@@ -147,6 +147,13 @@ header h1 {
     margin-top: 1vh;
 }
 
+.tarefa div {
+    display: flex;
+    justify-content: space-around;
+    gap: 1%;
+    width: 13%;
+}
+
 .tarefa button {
     background-color: var(--cor-secundaria);
 }

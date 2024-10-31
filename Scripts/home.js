@@ -44,9 +44,17 @@ function carrregarTarefas() {
         for (let iterador = 0;iterador < arrayTarefas.length;iterador++) {
             const div = document.createElement('div');
             div.setAttribute('class','tarefa');
+
+            const divBotao = document.createElement('div');
     
             const nomeDaTarefa = document.createElement('p');
             nomeDaTarefa.innerHTML = `${arrayTarefas[iterador]['title']}`;
+
+            const concluir = document.createElement('button');
+            concluir.innerHTML = '<i class="fa-solid fa-check"></i>';
+            concluir.addEventListener("click",()=>{
+                deletaTarefa(arrayTarefas[iterador]['title']);
+            });
     
             const deletar = document.createElement('button');
             deletar.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -55,7 +63,9 @@ function carrregarTarefas() {
             });
     
             div.appendChild(nomeDaTarefa);
-            div.appendChild(deletar);
+            divBotao.appendChild(concluir);
+            divBotao.appendChild(deletar);
+            div.appendChild(divBotao);
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
         }
     }
