@@ -55,14 +55,14 @@ header h1 {
     top: 75vh;
 }
 
-/* JANELA ABERTA */
+/* JANELA FECHADA */
 .janelaParaCriarTarefa {
     width: 93%; 
-    height: 20vh; 
+    height: 15vh; 
     padding: 2%;
     border-radius: 10px;
     position: relative;
-    margin-top: -455px;
+    margin-top: -430px;
     border: 2px solid var(--cor-principal);
     display: flex;
     justify-content: center; 
@@ -130,7 +130,7 @@ header h1 {
 
 .caixaDeTarefas  {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     width: 97%;
