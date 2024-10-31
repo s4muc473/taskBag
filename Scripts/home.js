@@ -51,16 +51,18 @@ function carrregarTarefas() {
             nomeDaTarefa.innerHTML = `${arrayTarefas[iterador]['title']}`;
 
             const concluir = document.createElement('button');
-            concluir.innerHTML = '<i class="fa-solid fa-check"></i>';
+            concluir.innerHTML = '<i style="color: springgreen;" class="fa-solid fa-check"></i>';
             concluir.addEventListener("click",()=>{
                 deletaTarefa(arrayTarefas[iterador]['title']);
             });
     
             const deletar = document.createElement('button');
-            deletar.innerHTML = '<i class="fa-solid fa-trash"></i>';
+            deletar.innerHTML = '<i style="color: #FE5D9F" class="fa-solid fa-x"></i>';
             deletar.addEventListener("click",()=>{
                 deletaTarefa(arrayTarefas[iterador]['title']);
             });
+
+            const hora = document.createElement('div');
     
             div.appendChild(nomeDaTarefa);
             divBotao.appendChild(concluir);
