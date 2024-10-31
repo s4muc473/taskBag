@@ -90,3 +90,7 @@ header {
     align-items: center;
     margin-top: 1vh;
 }
+
+.solicitacao button {
+    background-color: var(--cor-secundaria);
+}
