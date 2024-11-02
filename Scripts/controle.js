@@ -35,4 +35,5 @@ console.log(nvlUser)
 
 function resetarDados() {
     localStorage.nvlDoUsuario = 0;
+    alert(tt)
 }

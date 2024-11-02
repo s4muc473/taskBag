@@ -1,5 +1,3 @@
-const bibliotecaDeDatas = new Date();
-
 function abrirJanelaParaCriarTarefa() {
     let aba = elementosDaPaginaHome.aba();
     elementosDaPaginaHome.JanelaParaCriarTarefa().classList.toggle("janelaParaCriarTarefaAberta");
@@ -30,6 +28,7 @@ function novaTarefa() {
         totalTarefasCriadas++;
         localStorage.totalTarefasCriadas = totalTarefasCriadas;
 
+        const bibliotecaDeDatas = new Date();
         bibliotecaDeDatas.setHours(bibliotecaDeDatas.getHours() + 8);
         const horarioDePrazoDaTarefa = bibliotecaDeDatas.toLocaleTimeString('pt-BR', { hour12: false });
 
@@ -85,58 +84,6 @@ function carrregarTarefas() {
             const hora = document.createElement('div');
             hora.setAttribute('class', 'horaTarefa');
 
-            function iniciarContagemRegressiva(duracao) {
-                const fimContagem = Date.now() + duracao;
-                localStorage.setItem('fimContagem', fimContagem);
-            
-                const contagemRegressiva = setInterval(() => {
-                    const agora = Date.now();
-                    const diferenca = fimContagem - agora;
-            
-                    if (diferenca <= 0) {
-                        clearInterval(contagemRegressiva);
-                        console.log("O tempo acabou!");
-                        localStorage.removeItem('fimContagem'); // Limpa o item do localStorage
-                        return;
-                    }
-            
-                    // Calcula horas, minutos e segundos restantes
-                    const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
-                    const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
-                    const segundos = Math.floor((diferenca / 1000) % 60);
-            
-                    // Exibe o resultado no console ou em um elemento da página
-                    // console.log(`Faltam ${horas}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`);
-
-                    localStorage.hora = `${horas}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-                }, 1000); // Atualiza a cada segundo
-            }
-            
-            // Função para verificar e continuar a contagem se necessário
-            function verificarContagem() {
-                const fimContagem = localStorage.getItem('fimContagem');
-                if (fimContagem) {
-                    const agora = Date.now();
-                    const diferenca = Number(fimContagem) - agora;
-            
-                    if (diferenca > 0) {
-                        // Se ainda há tempo restante, inicia a contagem regressiva com o tempo restante
-                        iniciarContagemRegressiva(diferenca);
-                    } else {
-                        // Se o tempo já acabou
-                        console.log("O tempo já acabou!");
-                        localStorage.removeItem('fimContagem'); // Limpa o item do localStorage
-                    }
-                } else {
-                    // Inicia uma nova contagem se não houver contagem salva
-                    iniciarContagemRegressiva(8 * 60 * 60 * 1000); // 8 horas
-                }
-            }
-            
-            // Verifica o estado da contagem ao carregar a página
-            verificarContagem();
-            
-            // Seu código existente para o setTimeout
             setTimeout(() => {
                 // Código para remover a tarefa
                 elementosDaPaginaHome.caixaDeTarefas().removeChild(div);
@@ -150,7 +97,7 @@ function carrregarTarefas() {
             }, 8 * 60 * 60 * 1000); // 8 horas
             
 
-            hora.innerHTML = localStorage.hora;
+            hora.innerHTML = arrayTarefas[iterador]['time'];
 
             div.appendChild(nomeDaTarefa);
             divBotao.appendChild(concluir);
