@@ -21,17 +21,13 @@ if (!localStorage.nvlDoUsuario || localStorage.nvlDoUsuario == 0) {
 
 
     localStorage.nvlDoUsuario = 1;
-
-    nvlUser = 1;
+    
 } else if (localStorage.nvlDoUsuario == 1) {
     elementosDasPaginas.nvlDoUsuario().innerHTML           = "Iniciante";
     elementosDasPaginas.totalTarefasCriadas().innerHTML    = localStorage.totalTarefasCriadas;
     elementosDasPaginas.totalTarefasConcluidas().innerHTML = localStorage.totalTarefasConcluidas;
     elementosDasPaginas.totalTarefasPerdidas().innerHTML   = localStorage.totalTarefasPerdidas;
 }
-
-
-console.log(nvlUser)
 
 function resetarDados() {
     localStorage.nvlDoUsuario = 0;
