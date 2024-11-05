@@ -14,10 +14,33 @@ const elementosDaPaginaHome = {
     caixaDeTarefas: () => document.querySelector('.caixaDeTarefas'),
     aba: () => document.querySelector('.aba'),
     inputNomeDaTarefa: () => document.querySelector('#input-nome-tarefa'),
+    checkMateria: () => document.querySelector('.check-materia'),
+    checkTarefa: () => document.querySelector('.check-tarefa'),
     btnNovaTarefa: () => document.querySelector('#btnNovaTarefa'),
 }
 
 const localStorageKey = "tarefasDoTaskBag";
+
+const tirarSelecao = () => {
+    const elementosSelecionados = [...document.querySelectorAll('.selecionado')];
+    elementosSelecionados.map((el)=>{
+        el.classList.remove("selecionado");
+    });
+}
+
+let tipoDaTarefa;
+
+elementosDaPaginaHome.checkMateria().addEventListener('click',(evt)=>{
+    tirarSelecao();
+    evt.target.classList.toggle('selecionado');
+    tipoDaTarefa = "Materia";
+});
+
+elementosDaPaginaHome.checkTarefa().addEventListener('click',(evt)=>{
+    tirarSelecao();
+    evt.target.classList.toggle('selecionado');
+    tipoDaTarefa = "Tarefa";
+});
 
 function novaTarefa() {
     if (!elementosDaPaginaHome.inputNomeDaTarefa()) {
@@ -32,11 +55,36 @@ function novaTarefa() {
         bibliotecaDeDatas.setHours(bibliotecaDeDatas.getHours() + 8);
         const horarioDePrazoDaTarefa = bibliotecaDeDatas.toLocaleTimeString('pt-BR', { hour12: false });
 
+        let dataAtual = new Date();
+        dataAtual.setDate(dataAtual.getDate() + 5);
+        
+        let ano = dataAtual.getFullYear();
+        let mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); 
+        let dia = String(dataAtual.getDate()).padStart(2, '0');
+        
+        let dataFormatada = `${ano}-${mes}-${dia}`;
+        
+
+
 
         let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+
+        let corDaTarefa, prazo;
+        if (tipoDaTarefa == "Materia") {
+            corDaTarefa = "blue"; 
+            prazo = dataFormatada;
+        } else if (tipoDaTarefa == "Tarefa") {
+            corDaTarefa = "#000";
+            prazo = horarioDePrazoDaTarefa;
+        } else {
+            console.log("teste"); // BUG LLLLLLLLLLLLLLLLLLLLLLL
+        }
+
         arrayTarefas.push({
             title: elementosDaPaginaHome.inputNomeDaTarefa().value,
-            time: horarioDePrazoDaTarefa,
+            time: prazo,
+            color: corDaTarefa,
+            type: tipoDaTarefa,
         });
         localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
         carrregarTarefas();
@@ -55,6 +103,7 @@ function carrregarTarefas() {
         for (let iterador = 0; iterador < arrayTarefas.length; iterador++) {
             const div = document.createElement('div');
             div.setAttribute('class', 'tarefa');
+            div.style.backgroundColor = arrayTarefas[iterador].color;
 
             const nomeDaTarefa = document.createElement('p');
             nomeDaTarefa.innerHTML = `${arrayTarefas[iterador]['title']}`;
@@ -84,18 +133,37 @@ function carrregarTarefas() {
             const hora = document.createElement('div');
             hora.setAttribute('class', 'horaTarefa');
 
-            setTimeout(() => {
-                // Código para remover a tarefa
-                elementosDaPaginaHome.caixaDeTarefas().removeChild(div);
-                deletaTarefa(arrayTarefas[iterador]['title']);
-            
-                let totalTarefasPerdidas = localStorage.totalTarefasPerdidas || 0;
-                totalTarefasPerdidas++;
-                localStorage.totalTarefasPerdidas = totalTarefasPerdidas;
-            
-                alert('Ops... parece que suas tarefas venceram =(');
-            }, 8 * 60 * 60 * 1000); // 8 horas
-            
+            function ChecagemDeVencimentoDeTarefa() {
+                if (arrayTarefas[iterador].type == "Tarefa") {
+                    setTimeout(() => {
+                        // Código para remover a tarefa
+                    
+                        elementosDaPaginaHome.caixaDeTarefas().removeChild(div);
+                        deletaTarefa(arrayTarefas[iterador]['title']);
+                    
+                        let totalTarefasPerdidas = localStorage.totalTarefasPerdidas || 0;
+                        totalTarefasPerdidas++;
+                        localStorage.totalTarefasPerdidas = totalTarefasPerdidas;
+                    
+                        alert('Ops... parece que suas tarefas venceram =(');
+                    }, 8 * 60 * 60 * 1000); // 8 horas
+                } else if (arrayTarefas[iterador].type == "Materia"){
+                    setTimeout(() => {
+                        // Código para remover a tarefa
+                    
+                        elementosDaPaginaHome.caixaDeTarefas().removeChild(div);
+                        deletaTarefa(arrayTarefas[iterador]['title']);
+                    
+                        let totalTarefasPerdidas = localStorage.totalTarefasPerdidas || 0;
+                        totalTarefasPerdidas++;
+                        localStorage.totalTarefasPerdidas = totalTarefasPerdidas;
+                    
+                        alert('Ops... parece que suas tarefas venceram =(');
+                    },  5 * 24 * 60 * 60 * 1000); // 5 Dias
+                }
+            }
+
+            ChecagemDeVencimentoDeTarefa()
 
             hora.innerHTML = arrayTarefas[iterador]['time'];
 

@@ -21,8 +21,11 @@
 
         <div class="janelaParaCriarTarefa">
             <input type="text" placeholder="Digite a Tarefa" id="input-nome-tarefa"  maxlength="25">
-            <!-- <textarea placeholder="Descrição"></textarea> -->
-            <button onclick="novaTarefa()" id="btnNovaTarefa">Criar Tarefa</button>
+            <div class="janelaParaCriarTarefaChecks">
+                <p class="check-materia">Matéria</p>
+                <p class="selecionado check-tarefa">Tarefa</p>
+            </div>
+            <button onclick="novaTarefa()" id="btnNovaTarefa">Criar</button>
         </div>
 
         <div class="aba" onclick="abrirJanelaParaCriarTarefa()">
