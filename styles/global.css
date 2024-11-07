@@ -59,7 +59,7 @@ header h1 {
 .janelaParaCriarTarefa {
     width: 93%; 
     height: 15vh; 
-    padding: 2%;
+    padding: 1%;
     border-radius: 10px;
     position: relative;
     margin-top: -430px;
@@ -75,6 +75,7 @@ header h1 {
     position: relative;
     margin-top: 0px;
     transition: 0.5s ease-in-out;
+    padding: 1%;
 }
 
 .aba {
@@ -99,16 +100,16 @@ header h1 {
 }
 
 .janelaParaCriarTarefa input {
-    width: 100%;
+    width: 90%;
     margin-top: 1vh;
     display: inline-block;
     padding: 2%;
-    background-color: var(--color-ter);
+    margin-bottom: 10px;
+    background-color: var(--cor-terciaria);
     padding-left: 2%;
     font-family: monospace;
     border-radius: 10px;
     color: var(--color-font);
-    caret-color: var(--color-font);
     outline: none;
 }
 
@@ -117,10 +118,6 @@ header h1 {
     justify-content: space-around;
     width: 100%;
     padding: 1%;
-}
-
-.selecionado {
-    color: blue !important;
 }
 
 .janelaParaCriarTarefa textarea {
@@ -132,11 +129,10 @@ header h1 {
     transition: 0.5s ease-in-out;
 }
 
-.janelaParaCriarTarefa button {
-    width: 100%;
-    padding: 2%;
-    border-radius: 10px;
-    margin-top: 1vh;
+.janelaParaCriarTarefaChecks div{
+    display: flex;
+    justify-content: space-around;
+    width: 28%;
 }
 
 .caixaDeTarefas  {

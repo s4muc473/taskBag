@@ -28,21 +28,15 @@ const tirarSelecao = () => {
     });
 }
 
-let tipoDaTarefa;
-
 elementosDaPaginaHome.checkMateria().addEventListener('click',(evt)=>{
-    tirarSelecao();
-    evt.target.classList.toggle('selecionado');
-    tipoDaTarefa = "Materia";
+    novaTarefa("Materia");
 });
 
 elementosDaPaginaHome.checkTarefa().addEventListener('click',(evt)=>{
-    tirarSelecao();
-    evt.target.classList.toggle('selecionado');
-    tipoDaTarefa = "Tarefa";
+    novaTarefa("Tarefa");
 });
 
-function novaTarefa() {
+function novaTarefa(tipoDaTarefa) {
     if (!elementosDaPaginaHome.inputNomeDaTarefa()) {
         alert("Por favor infome o nome da tarefa");
     } else {
@@ -63,9 +57,6 @@ function novaTarefa() {
         let dia = String(dataAtual.getDate()).padStart(2, '0');
         
         let dataFormatada = `${ano}-${mes}-${dia}`;
-        
-
-
 
         let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
 
