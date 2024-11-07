@@ -127,30 +127,22 @@ function carrregarTarefas() {
             function ChecagemDeVencimentoDeTarefa() {
                 if (arrayTarefas[iterador].type == "Tarefa") {
                     setTimeout(() => {
-                        // Código para remover a tarefa
-                    
-                        elementosDaPaginaHome.caixaDeTarefas().removeChild(div);
-                        deletaTarefa(arrayTarefas[iterador]['title']);
+                        arrayTarefas[iterador]['color'] = "red";
+                        localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
                     
                         let totalTarefasPerdidas = localStorage.totalTarefasPerdidas || 0;
                         totalTarefasPerdidas++;
                         localStorage.totalTarefasPerdidas = totalTarefasPerdidas;
-                    
-                        alert('Ops... parece que suas tarefas venceram =(');
-                    }, 8 * 60 * 60 * 1000); // 8 horas
+                    },8 * 60 * 60 * 1000); // 8 horas
                 } else if (arrayTarefas[iterador].type == "Materia"){
-                    setTimeout(() => {
-                        // Código para remover a tarefa
-                    
-                        elementosDaPaginaHome.caixaDeTarefas().removeChild(div);
-                        deletaTarefa(arrayTarefas[iterador]['title']);
+                    setTimeout(() => {                    
+                        arrayTarefas[iterador]['color'] = "red";
+                        localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
                     
                         let totalTarefasPerdidas = localStorage.totalTarefasPerdidas || 0;
                         totalTarefasPerdidas++;
                         localStorage.totalTarefasPerdidas = totalTarefasPerdidas;
-                    
-                        alert('Ops... parece que suas tarefas venceram =(');
-                    },  5 * 24 * 60 * 60 * 1000); // 5 Dias
+                    },5 * 24 * 60 * 60 * 1000); // 5 Dias
                 }
             }
 

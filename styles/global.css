@@ -188,6 +188,12 @@ header h1 {
 .btnDeConfiguracoes {
     background-color: var(--cor-secundaria);
     font-size: 16px;
+    position: fixed;
+    width: 100%;
+    bottom: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btnDeConfiguracoes a {
