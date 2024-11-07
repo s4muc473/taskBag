@@ -62,7 +62,7 @@ header h1 {
     padding: 1%;
     border-radius: 10px;
     position: relative;
-    margin-top: -430px;
+    margin-top: -425px;
     border: 2px solid var(--cor-principal);
     display: flex;
     justify-content: center; 
