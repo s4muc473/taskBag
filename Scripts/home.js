@@ -50,13 +50,13 @@ function novaTarefa(tipoDaTarefa) {
         let corDaTarefa, continuidade;
         if (tipoDaTarefa == "Materia") {
             corDaTarefa = "blue";
-            continuidade = 4;
+            continuidade = 5;
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
-            continuidade = 12;
+            continuidade = 13;
         } else {
             corDaTarefa = "darkgreen";
-            continuidade = 8;
+            continuidade = 9;
         }
 
         arrayTarefas.push({
