@@ -16,65 +16,53 @@ const elementosDaPaginaHome = {
     inputNomeDaTarefa: () => document.querySelector('#input-nome-tarefa'),
     checkMateria: () => document.querySelector('.check-materia'),
     checkTarefa: () => document.querySelector('.check-tarefa'),
-    btnNovaTarefa: () => document.querySelector('#btnNovaTarefa'),
+    checkProjeto: () => document.querySelector('.check-projeto'),
 }
 
 const localStorageKey = "tarefasDoTaskBag";
 
 const tirarSelecao = () => {
     const elementosSelecionados = [...document.querySelectorAll('.selecionado')];
-    elementosSelecionados.map((el)=>{
+    elementosSelecionados.map((el) => {
         el.classList.remove("selecionado");
     });
 }
 
-elementosDaPaginaHome.checkMateria().addEventListener('click',(evt)=>{
+elementosDaPaginaHome.checkMateria().addEventListener('click', (evt) => {
     novaTarefa("Materia");
 });
 
-elementosDaPaginaHome.checkTarefa().addEventListener('click',(evt)=>{
+elementosDaPaginaHome.checkTarefa().addEventListener('click', (evt) => {
     novaTarefa("Tarefa");
 });
+
+elementosDaPaginaHome.checkProjeto().addEventListener('click', (evt) => {
+    novaTarefa("Projeto");
+});
+
 
 function novaTarefa(tipoDaTarefa) {
     if (!elementosDaPaginaHome.inputNomeDaTarefa()) {
         alert("Por favor infome o nome da tarefa");
     } else {
-        let totalTarefasCriadas = 0;
-        totalTarefasCriadas = localStorage.totalTarefasCriadas;
-        totalTarefasCriadas++;
-        localStorage.totalTarefasCriadas = totalTarefasCriadas;
-
-        const bibliotecaDeDatas = new Date();
-        bibliotecaDeDatas.setHours(bibliotecaDeDatas.getHours() + 8);
-        const horarioDePrazoDaTarefa = bibliotecaDeDatas.toLocaleTimeString('pt-BR', { hour12: false });
-
-        let dataAtual = new Date();
-        dataAtual.setDate(dataAtual.getDate() + 5);
-        
-        let ano = dataAtual.getFullYear();
-        let mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); 
-        let dia = String(dataAtual.getDate()).padStart(2, '0');
-        
-        let dataFormatada = `${ano}-${mes}-${dia}`;
-
         let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
 
-        let corDaTarefa, prazo;
+        let corDaTarefa, continuidade;
         if (tipoDaTarefa == "Materia") {
-            corDaTarefa = "blue"; 
-            prazo = dataFormatada;
+            corDaTarefa = "blue";
+            continuidade = 4;
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
-            prazo = horarioDePrazoDaTarefa;
+            continuidade = 12;
         } else {
-            console.log("teste"); // BUG LLLLLLLLLLLLLLLLLLLLLLL
+            corDaTarefa = "darkgreen";
+            continuidade = 8;
         }
 
         arrayTarefas.push({
             title: elementosDaPaginaHome.inputNomeDaTarefa().value,
-            time: prazo,
             color: corDaTarefa,
+            continue: continuidade,
             type: tipoDaTarefa,
         });
         localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
@@ -85,13 +73,22 @@ function novaTarefa(tipoDaTarefa) {
 
 function carrregarTarefas() {
     console.log('funcionando...');
+
+    
     let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
     elementosDaPaginaHome.caixaDeTarefas().innerHTML = "";
-
+    
     if (arrayTarefas.length == 0) {
         elementosDaPaginaHome.caixaDeTarefas().innerHTML = "Tarefas Aqui";
     } else {
         for (let iterador = 0; iterador < arrayTarefas.length; iterador++) {
+            arrayTarefas[iterador].continue --;
+            localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
+
+            if (arrayTarefas[iterador].continue < 0) {
+                arrayTarefas[iterador].color = "red"
+            }
+
             const div = document.createElement('div');
             div.setAttribute('class', 'tarefa');
             div.style.backgroundColor = arrayTarefas[iterador].color;
@@ -105,11 +102,6 @@ function carrregarTarefas() {
             concluir.innerHTML = '<i style="color: springgreen;font-size: 19px;" class="fa-solid fa-check"></i>';
             concluir.addEventListener("click", () => {
                 deletaTarefa(arrayTarefas[iterador]['title']);
-
-                let totalTarefasConcluidas = 0;
-                totalTarefasConcluidas = localStorage.totalTarefasConcluidas;
-                totalTarefasConcluidas++;
-                localStorage.totalTarefasConcluidas = totalTarefasConcluidas;
             });
 
             const deletar = document.createElement('button');
@@ -118,44 +110,19 @@ function carrregarTarefas() {
                 deletaTarefa(arrayTarefas[iterador]['title']);
             });
 
-            const divBotaoEHora = document.createElement('div');
-            divBotaoEHora.setAttribute('class', 'divBotaoEHora');
+            const divBotaoECont = document.createElement('div');
+            divBotaoECont.setAttribute('class', 'divBotaoECont');
 
-            const hora = document.createElement('div');
-            hora.setAttribute('class', 'horaTarefa');
-
-            function ChecagemDeVencimentoDeTarefa() {
-                if (arrayTarefas[iterador].type == "Tarefa") {
-                    setTimeout(() => {
-                        arrayTarefas[iterador]['color'] = "red";
-                        localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
-                    
-                        let totalTarefasPerdidas = localStorage.totalTarefasPerdidas || 0;
-                        totalTarefasPerdidas++;
-                        localStorage.totalTarefasPerdidas = totalTarefasPerdidas;
-                    },8 * 60 * 60 * 1000); // 8 horas
-                } else if (arrayTarefas[iterador].type == "Materia"){
-                    setTimeout(() => {                    
-                        arrayTarefas[iterador]['color'] = "red";
-                        localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
-                    
-                        let totalTarefasPerdidas = localStorage.totalTarefasPerdidas || 0;
-                        totalTarefasPerdidas++;
-                        localStorage.totalTarefasPerdidas = totalTarefasPerdidas;
-                    },5 * 24 * 60 * 60 * 1000); // 5 Dias
-                }
-            }
-
-            ChecagemDeVencimentoDeTarefa()
-
-            hora.innerHTML = arrayTarefas[iterador]['time'];
+            const divCont = document.createElement('div');
+            divCont.setAttribute('class', 'divCont');
+            divCont.innerHTML = arrayTarefas[iterador].continue;
 
             div.appendChild(nomeDaTarefa);
             divBotao.appendChild(concluir);
             divBotao.appendChild(deletar);
-            divBotaoEHora.appendChild(divBotao);
-            divBotaoEHora.appendChild(hora);
-            div.appendChild(divBotaoEHora);
+            divBotaoECont.appendChild(divBotao);
+            divBotaoECont.appendChild(divCont);
+            div.appendChild(divBotaoECont);
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
         }
     }

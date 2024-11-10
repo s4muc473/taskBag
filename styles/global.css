@@ -158,14 +158,14 @@ header h1 {
     margin-top: 1vh;
 }
 
-.tarefa .divBotaoEHora {
+.tarefa .divBotaoECont{
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-top: 2vh;
 }
 
-.divBotaoEHora div {
+.divBotaoECont div {
     width: 15%;
     display: flex;
     justify-content: space-between;
@@ -178,7 +178,7 @@ header h1 {
     background-color: transparent;
 }
 
-.tarefa .horaTarefa {
+.tarefa .divCont {
     width: 50%;
     display: flex;
     justify-content: flex-end;
