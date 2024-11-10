@@ -21,23 +21,22 @@ const elementosDaPaginaHome = {
 
 const localStorageKey = "tarefasDoTaskBag";
 
-const tirarSelecao = () => {
-    const elementosSelecionados = [...document.querySelectorAll('.selecionado')];
-    elementosSelecionados.map((el) => {
-        el.classList.remove("selecionado");
-    });
-}
-
 elementosDaPaginaHome.checkMateria().addEventListener('click', (evt) => {
     novaTarefa("Materia");
+    abrirJanelaParaCriarTarefa();
+    elementosDaPaginaHome.inputNomeDaTarefa().value = "";
 });
 
 elementosDaPaginaHome.checkTarefa().addEventListener('click', (evt) => {
     novaTarefa("Tarefa");
+    abrirJanelaParaCriarTarefa();
+    elementosDaPaginaHome.inputNomeDaTarefa().value = "";
 });
 
 elementosDaPaginaHome.checkProjeto().addEventListener('click', (evt) => {
     novaTarefa("Projeto");
+    abrirJanelaParaCriarTarefa();
+    elementosDaPaginaHome.inputNomeDaTarefa().value = "";
 });
 
 
@@ -50,13 +49,13 @@ function novaTarefa(tipoDaTarefa) {
         let corDaTarefa, continuidade;
         if (tipoDaTarefa == "Materia") {
             corDaTarefa = "blue";
-            continuidade = 4;
+            continuidade = 13;
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
-            continuidade = 12;
+            continuidade = 5;
         } else {
             corDaTarefa = "darkgreen";
-            continuidade = 8;
+            continuidade = 9;
         }
 
         arrayTarefas.push({

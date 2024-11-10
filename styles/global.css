@@ -133,6 +133,11 @@ header h1 {
     display: flex;
     justify-content: space-around;
     width: 28%;
+    color: var(--cor-fonte);
+}
+
+.janelaParaCriarTarefaChecks p:active {
+    color: blue;
 }
 
 .caixaDeTarefas  {
@@ -186,7 +191,7 @@ header h1 {
 }
 
 .btnDeConfiguracoes {
-    background-color: var(--cor-secundaria);
+    background-color: transparent;
     font-size: 16px;
     position: fixed;
     width: 100%;
