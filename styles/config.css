@@ -23,33 +23,6 @@ header {
     margin-left: 5%;
 }
 
-.dados {
-    width: 100%;
-    padding-left: 5.5%;
-    height: auto;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.dados div {
-    width: 90%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: var(--cor-principal);
-    color: var(--cor-secundaria);
-    border-radius: 2px;
-    padding: 2%;
-    margin-top: 1vh;
-}
-
-.dados h3, p{
-    display: inline-block;
-    font-size: 14px;
-}
-
 .caixaDeSolicitacao {
     width: 90%;
     height: auto;
@@ -95,8 +68,10 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-top: 1vh;
+    color: blue;
 }
 
 .solicitacao button {
     background-color: var(--cor-secundaria);
+    color: black;
 }
