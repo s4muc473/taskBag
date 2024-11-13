@@ -117,6 +117,7 @@ function carrregarTarefas() {
             divBotaoECont.setAttribute('class', 'divBotaoECont');
 
             const divSimboloDaTarefa = document.createElement('div');
+            divSimboloDaTarefa.setAttribute('class','simboloDaTask');
             divSimboloDaTarefa.innerHTML = arrayTarefas[iterador].symbol;
 
             const divCont = document.createElement('div');
