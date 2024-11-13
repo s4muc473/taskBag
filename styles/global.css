@@ -188,7 +188,7 @@ header h1 {
 }
 
 .tarefa .divCont {
-    width: 50%;
+    width: 20%;
     display: flex;
     justify-content: flex-end;
     /* background-color: #000; */
