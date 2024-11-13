@@ -194,7 +194,8 @@ header h1 {
     width: 20%;
     display: flex;
     justify-content: flex-end;
-    /* background-color: #000; */
+    font-size:
+;    /* background-color: #000; */
 }
 
 .btnDeConfiguracoes {
