@@ -46,16 +46,19 @@ function novaTarefa(tipoDaTarefa) {
     } else {
         let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
 
-        let corDaTarefa, continuidade;
+        let corDaTarefa, continuidade, simboloDaTarefa;
         if (tipoDaTarefa == "Materia") {
             corDaTarefa = "blue";
             continuidade = 13;
+            simboloDaTarefa = '<i class="fa-solid fa-book"></i>';
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
             continuidade = 5;
+            simboloDaTarefa = '<i class="fa-solid fa-check"></i>';
         } else {
             corDaTarefa = "darkgreen";
             continuidade = 9;
+            simboloDaTarefa = '<i class="fa-solid fa-diagram-project"></i>';
         }
 
         arrayTarefas.push({
@@ -63,6 +66,7 @@ function novaTarefa(tipoDaTarefa) {
             color: corDaTarefa,
             continue: continuidade,
             type: tipoDaTarefa,
+            symbol: simboloDaTarefa,
         });
         localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
         carrregarTarefas();
@@ -112,6 +116,9 @@ function carrregarTarefas() {
             const divBotaoECont = document.createElement('div');
             divBotaoECont.setAttribute('class', 'divBotaoECont');
 
+            const divSimboloDaTarefa = document.createElement('div');
+            divSimboloDaTarefa.innerHTML = arrayTarefas[iterador].symbol;
+
             const divCont = document.createElement('div');
             divCont.setAttribute('class', 'divCont');
             divCont.innerHTML = arrayTarefas[iterador].continue;
@@ -120,6 +127,7 @@ function carrregarTarefas() {
             divBotao.appendChild(concluir);
             divBotao.appendChild(deletar);
             divBotaoECont.appendChild(divBotao);
+            divBotaoECont.appendChild(divSimboloDaTarefa);
             divBotaoECont.appendChild(divCont);
             div.appendChild(divBotaoECont);
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
