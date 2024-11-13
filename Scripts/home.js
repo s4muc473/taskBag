@@ -121,14 +121,14 @@ function carrregarTarefas() {
 
             const divCont = document.createElement('div');
             divCont.setAttribute('class', 'divCont');
-            divCont.innerHTML = arrayTarefas[iterador].continue;
+            divCont.innerHTML = `<p>${arrayTarefas[iterador].continue;}</p>`
 
             div.appendChild(nomeDaTarefa);
             divBotao.appendChild(concluir);
             divBotao.appendChild(deletar);
             divBotaoECont.appendChild(divBotao);
-            divBotaoECont.appendChild(divSimboloDaTarefa);
             divBotaoECont.appendChild(divCont);
+            divCont.appendChild(divSimboloDaTarefa);
             div.appendChild(divBotaoECont);
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
         }
