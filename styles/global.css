@@ -163,6 +163,10 @@ header h1 {
     margin-top: 1vh;
 }
 
+.tarefa .simboloDaTask {
+    font-size: 1.5rem;
+}
+
 .tarefa .divBotaoECont{
     display: flex;
     justify-content: space-between;
