@@ -128,8 +128,8 @@ function carrregarTarefas() {
             divBotao.appendChild(concluir);
             divBotao.appendChild(deletar);
             divBotaoECont.appendChild(divBotao);
-            divBotaoECont.appendChild(divSimboloDaTarefa);
             divBotaoECont.appendChild(divCont);
+            divBotaoECont.appendChild(divSimboloDaTarefa);
             div.appendChild(divBotaoECont);
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
         }
