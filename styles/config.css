@@ -33,7 +33,6 @@ header {
 
 .caixaDeSolicitacao input {
     width: 100%;
-    border-bottom: 1px solid var(--cor-principal);
     outline: none;
     padding: 1%;
 }
@@ -47,15 +46,21 @@ header {
 }
 
 .divSolicitacao input {
-    width: 100%;
-    border-bottom: 1px solid var(--cor-principal);
-    outline: none;
     padding: 1%;
+    width: 90%;
+    display: inline-block;
+    padding: 2%;
+    background-color: var(--cor-terciaria);
+    font-family: monospace;
+    border-radius: 10px;
+    color: var(--color-font);
+    outline: none;
 }
 
 .divSolicitacao button {
     font-size: 16px;
     background-color: var(--cor-secundaria);
+    color: blue;
 }
 
 .solicitacoes {
@@ -75,10 +80,14 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-top: 1vh;
-    color: blue;
+    color: var(--cor-secundaria);
+    background-color: var(--cor-principal);
+    padding: 2%;
+    border-radius: 10px;
 }
 
 .solicitacao button {
     background-color: var(--cor-secundaria);
-    color: black;
+    color: red;
+    background-color: var(--cor-principal);
 }
