@@ -24,23 +24,30 @@ header {
 }
 
 .caixaDeSolicitacao {
-    width: 90%;
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
-.divSolicitacao {
+.caixaDeSolicitacao input {
+    width: 100%;
+    border-bottom: 1px solid var(--cor-principal);
+    outline: none;
+    padding: 1%;
+}
+
+.divSolicitacao div {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 98%;
+    padding: 1%;
     justify-content: space-between;
 }
 
 .divSolicitacao input {
-    width: 90%;
+    width: 100%;
     border-bottom: 1px solid var(--cor-principal);
     outline: none;
     padding: 1%;

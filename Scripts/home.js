@@ -51,14 +51,17 @@ function novaTarefa(tipoDaTarefa) {
             corDaTarefa = "blue";
             continuidade = 13;
             simboloDaTarefa = '<i class="fa-solid fa-book"></i>';
+            pontosDaTarefa = [];
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
             continuidade = 5;
             simboloDaTarefa = '<i class="fa-solid fa-check"></i>';
+            pontosDaTarefa = [];
         } else {
             corDaTarefa = "darkgreen";
             continuidade = 9;
             simboloDaTarefa = '<i class="fa-solid fa-diagram-project"></i>';
+            pontosDaTarefa = [];
         }
 
         arrayTarefas.push({
@@ -67,6 +70,8 @@ function novaTarefa(tipoDaTarefa) {
             continue: continuidade,
             type: tipoDaTarefa,
             symbol: simboloDaTarefa,
+
+            pontosDaTarefa: pontosDaTarefa,
         });
         localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
         carrregarTarefas();
@@ -77,7 +82,6 @@ function novaTarefa(tipoDaTarefa) {
 function carrregarTarefas() {
     console.log('funcionando...');
 
-    
     let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
     elementosDaPaginaHome.caixaDeTarefas().innerHTML = "";
     
@@ -120,6 +124,12 @@ function carrregarTarefas() {
             divSimboloDaTarefa.setAttribute('class','simboloDaTask');
             divSimboloDaTarefa.innerHTML = arrayTarefas[iterador].symbol;
 
+            // ABRE A TAREFA NA NOVA PAGINA
+            divSimboloDaTarefa.addEventListener('click',()=>{
+                const id = iterador;
+                abrirMateria(arrayTarefas[iterador].title,id);
+            });
+
             const divCont = document.createElement('div');
             divCont.setAttribute('class', 'divCont');
             divCont.innerHTML = arrayTarefas[iterador].continue;
@@ -134,6 +144,12 @@ function carrregarTarefas() {
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
         }
     }
+}
+
+function abrirMateria(nomeDaTarefa,id) {
+    window.location.href = "config.html";
+    localStorage.nomeDaMateria = nomeDaTarefa;
+    localStorage.idDaTarefa = id;
 }
 
 function deletaTarefa(data) {
