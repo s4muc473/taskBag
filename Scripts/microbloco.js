@@ -6,8 +6,8 @@ const elementosDaPagina = {
 
 const localStorageKey = "tarefasDoTaskBag"; // CHAVE DA API
 let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
-let id = localStorage.idDoSubBloco;
-let arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
+let id = localStorage.idDaTarefa;
+var arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
 
 function editarNomeDaTarefa() {
     let nomeDaTarefa = elementosDaPagina.inputNomeDaTarefa().value;
