@@ -49,7 +49,7 @@ function novaTarefa(tipoDaTarefa) {
         let corDaTarefa, continuidade, simboloDaTarefa;
         if (tipoDaTarefa == "Materia") {
             corDaTarefa = "blue";
-            continuidade = 13;
+            continuidade = 200;
             simboloDaTarefa = '<i class="fa-solid fa-book"></i>';
             pontosDaTarefa = [];
         } else if (tipoDaTarefa == "Tarefa") {
@@ -59,7 +59,7 @@ function novaTarefa(tipoDaTarefa) {
             pontosDaTarefa = [];
         } else {
             corDaTarefa = "darkgreen";
-            continuidade = 9;
+            continuidade = 125;
             simboloDaTarefa = '<i class="fa-solid fa-diagram-project"></i>';
             pontosDaTarefa = [];
         }
