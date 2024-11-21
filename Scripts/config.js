@@ -59,8 +59,15 @@ function carrregarSolitacoes() {
             div.style.backgroundColor = arrayInterno[iterador]['color'];
 
             div.addEventListener('click',(evt)=>{
-                evt.target.classList.toggle('concluido');
-                arrayInterno[iterador]['color'] = 'blue';
+                let cor = arrayInterno[iterador]['color'];
+                if (cor == 'black') {
+                    evt.target.classList.add('concluido');
+                    arrayInterno[iterador]['color'] = 'blue';
+                } else if (cor == 'blue') {
+                    evt.target.classList.remove('concluido');
+                    arrayInterno[iterador]['color'] = 'black';
+                    carrregarSolitacoes()
+                }
                 localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
             })
     

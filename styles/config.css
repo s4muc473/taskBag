@@ -31,23 +31,18 @@ header {
     flex-direction: column;
 }
 
-.caixaDeSolicitacao input {
-    width: 100%;
-    outline: none;
-    padding: 1%;
-}
-
 .divSolicitacao div {
     display: flex;
     flex-direction: row;
-    width: 98%;
+    width: 95%;
     padding: 1%;
     justify-content: space-between;
 }
 
 .divSolicitacao input {
     padding: 1%;
-    width: 90%;
+    outline: none;
+    width: 80%;
     display: inline-block;
     padding: 2%;
     background-color: var(--cor-terciaria);
