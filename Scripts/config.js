@@ -1,18 +1,18 @@
 const elementosDaPagina = {
-    inputNomeDaMateria: () => document.querySelector('#nome-da-materia'),
+    inputNomeDaTarefa: () => document.querySelector('#nome-da-tarefa'),
     inputDaSolicitacao: () => document.querySelector('#input-solicitacao'),
     caixaDeSolicitacoes: () => document.querySelector('.solicitacoes'),
 }
 
-
 const localStorageKey = "tarefasDoTaskBag"; // CHAVE DA API
 let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
 let id = localStorage.idDaTarefa;
-// console.log(arrayTarefas[id]['pontosDaTarefa']); 
 
-
-
-
+function editarNomeDaTarefa() {
+    let nomeDaTarefa = elementosDaPagina.inputNomeDaTarefa().value;
+    arrayTarefas[id]['title'] = nomeDaTarefa;
+    localStorage.setItem(localStorageKey,JSON.stringify(arrayTarefas));
+}
 
 
 
@@ -41,12 +41,10 @@ function novaSolicitacao() {
 
 
 
-
-
 function carrregarSolitacoes() {
     console.log('funcionando...');
     elementosDaPagina.caixaDeSolicitacoes().innerHTML = "";
-    elementosDaPagina.inputNomeDaMateria().value = localStorage.nomeDaMateria;
+    elementosDaPagina.inputNomeDaTarefa().value = localStorage.nomeDaMateria;
 
     let arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
 
