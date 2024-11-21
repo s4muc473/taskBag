@@ -25,6 +25,7 @@ function novaSolicitacao() {
         let tarefaInterna = elementosDaPagina.inputDaSolicitacao().value;
         arrayTarefas[id]['pontosDaTarefa'].push({
             title: tarefaInterna,
+            color: 'black',
         });
 
 
@@ -55,6 +56,13 @@ function carrregarSolitacoes() {
         for (let iterador = 0;iterador < arrayInterno.length;iterador++) {
             const div = document.createElement('div');
             div.setAttribute('class','solicitacao');
+            div.style.backgroundColor = arrayInterno[iterador]['color'];
+
+            div.addEventListener('click',(evt)=>{
+                evt.target.classList.toggle('concluido');
+                arrayInterno[iterador]['color'] = 'blue';
+                localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
+            })
     
             const nomeDaSolicitacao = document.createElement('p');
             nomeDaSolicitacao.textContent = arrayInterno[iterador]['title'];

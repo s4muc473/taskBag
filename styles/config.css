@@ -75,19 +75,24 @@ header {
 
 .solicitacao {
     width: 90%;
+    font-size: 0.8rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-top: 1vh;
     color: var(--cor-secundaria);
-    background-color: var(--cor-principal);
+    /* background-color: var(--cor-principal); */
     padding: 2%;
     border-radius: 10px;
+    box-shadow: 2px 2px var(--cor-terciaria);
 }
 
 .solicitacao button {
-    background-color: var(--cor-secundaria);
-    color: red;
-    background-color: var(--cor-principal);
+    background-color: transparent;
+    color: var(--cor-secundaria);
+}
+
+.concluido {
+    background-color: blue !important; 
 }
