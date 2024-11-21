@@ -70,7 +70,6 @@ function novaTarefa(tipoDaTarefa) {
             continue: continuidade,
             type: tipoDaTarefa,
             symbol: simboloDaTarefa,
-
             pontosDaTarefa: pontosDaTarefa,
         });
         localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
@@ -127,7 +126,7 @@ function carrregarTarefas() {
             // ABRE A TAREFA NA NOVA PAGINA
             divSimboloDaTarefa.addEventListener('click',()=>{
                 const id = iterador;
-                abrirMateria(arrayTarefas[iterador].title,id);
+                abrirTarefa(arrayTarefas[iterador].title,id);
             });
 
             const divCont = document.createElement('div');
@@ -146,7 +145,7 @@ function carrregarTarefas() {
     }
 }
 
-function abrirMateria(nomeDaTarefa,id) {
+function abrirTarefa(nomeDaTarefa,id) {
     window.location.href = "config.html";
     localStorage.nomeDaMateria = nomeDaTarefa;
     localStorage.idDaTarefa = id;

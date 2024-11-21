@@ -86,6 +86,7 @@ header {
 .solicitacao button {
     background-color: transparent;
     color: var(--cor-secundaria);
+    padding: 4px;
 }
 
 .concluido {

@@ -6,11 +6,12 @@ const elementosDaPagina = {
 
 const localStorageKey = "tarefasDoTaskBag"; // CHAVE DA API
 let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
-let id = localStorage.idDaTarefa;
+let id = localStorage.idDoSubBloco;
+let arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
 
 function editarNomeDaTarefa() {
     let nomeDaTarefa = elementosDaPagina.inputNomeDaTarefa().value;
-    arrayTarefas[id]['title'] = nomeDaTarefa;
+    arrayInterno[id]['title'] = nomeDaTarefa;
     localStorage.setItem(localStorageKey,JSON.stringify(arrayTarefas));
 }
 
@@ -21,10 +22,9 @@ function novaSolicitacao() {
     } else {
 
         let tarefaInterna = elementosDaPagina.inputDaSolicitacao().value;
-        arrayTarefas[id]['pontosDaTarefa'].push({
+        arrayInterno[id]['microBlocos'].push({
             title: tarefaInterna,
             color: 'black',
-            microBlocos: [],
         });
 
 
@@ -39,70 +39,55 @@ function carrregarSolitacoes() {
     elementosDaPagina.caixaDeSolicitacoes().innerHTML = "";
     elementosDaPagina.inputNomeDaTarefa().value = localStorage.nomeDaMateria;
 
-    let arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
+    let arraySubInterno = arrayInterno[id]['microBlocos'];
 
     if (arrayTarefas.length == 0) {
         elementosDaPagina.caixaDeSolicitacoes().innerHTML = "Sub Máterias Aqui";
     } else {
-        for (let iterador = 0;iterador < arrayInterno.length;iterador++) {
+        for (let iterador = 0;iterador < arraySubInterno.length;iterador++) {
             const div = document.createElement('div');
             div.setAttribute('class','solicitacao');
-            div.style.backgroundColor = arrayInterno[iterador]['color'];
+            div.style.backgroundColor = arraySubInterno[iterador]['color'];
 
             div.addEventListener('click',(evt)=>{
-                let cor = arrayInterno[iterador]['color'];
+                let cor = arraySubInterno[iterador]['color'];
                 if (cor == 'black') {
                     evt.target.classList.add('concluido');
-                    arrayInterno[iterador]['color'] = 'blue';
+                    arraySubInterno[iterador]['color'] = 'blue';
                 } else if (cor == 'blue') {
                     evt.target.classList.remove('concluido');
-                    arrayInterno[iterador]['color'] = 'black';
+                    arraySubInterno[iterador]['color'] = 'black';
                     carrregarSolitacoes()
                 }
                 localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
             })
     
             const nomeDaSolicitacao = document.createElement('p');
-            nomeDaSolicitacao.textContent = arrayInterno[iterador]['title'];
+            nomeDaSolicitacao.textContent = arraySubInterno[iterador]['title'];
     
 
             const divDeBotoes = document.createElement('div'); 
 
-            const acessar = document.createElement('button');
-            acessar.innerHTML = '<i class="fa-solid fa-folder-open"></i>'
-
-            acessar.addEventListener('click',()=>{
-                const id = iterador;
-                abrirMicroBloco(arrayInterno[iterador].title,id);
-            })
-
             const deletar = document.createElement('button');
             deletar.innerHTML = '<i class="fa-solid fa-trash"></i>';
             deletar.addEventListener("click",()=>{
-                deletaSolitacao(arrayInterno[iterador]['title']);
+                deletaSolitacao(arraySubInterno[iterador]['title']);
             });
     
             div.appendChild(nomeDaSolicitacao);
             div.appendChild(divDeBotoes);
-            divDeBotoes.appendChild(acessar);
             divDeBotoes.appendChild(deletar);
             elementosDaPagina.caixaDeSolicitacoes().appendChild(div);
         }
     }
 }
 
-function abrirMicroBloco(nomeDoSubBloco,id) {
-    window.location.href = "microblocos.html";
-    localStorage.nomeDaMateria = nomeDoSubBloco;
-    localStorage.idDoSubBloco = id;
-}
-
 function deletaSolitacao(data) {
-    let arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
-    let index = arrayInterno.findIndex(x => x.title == data);
-    arrayInterno.splice(index, 1);
+    let arraySubInterno = arrayInterno[id]['microBlocos'];
+    let index = arraySubInterno.findIndex(x => x.title == data);
+    arraySubInterno.splice(index, 1);
 
-    arrayTarefas[id]['pontosDaTarefa'] = arrayInterno;
+    arrayInterno[id]['microBlocos'] = arraySubInterno;
     localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
 
     carrregarSolitacoes();
@@ -112,5 +97,5 @@ function deletaSolitacao(data) {
 window.addEventListener("load",carrregarSolitacoes);
 
 function voltar() {
-    window.location.href = "/pages/home.html";
+    window.location.href = "/pages/config.html";
 }
