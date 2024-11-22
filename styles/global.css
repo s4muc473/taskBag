@@ -5,10 +5,6 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-::-webkit-scrollbar {
-    width: 0px;
-}
-
 :root {
     --cor-principal: #000;
     --cor-secundaria: #fff;
@@ -48,8 +44,6 @@ header h1 {
     justify-content: center;
     flex-direction: column;
     padding: 1%;
-    overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
 .button-flutuante {
@@ -150,7 +144,6 @@ header h1 {
     display: flex;
     justify-content: start;
     align-items: center;
-    justify-content: space-between;
     flex-direction: column;
     width: 97%;
     height: 40vh;
@@ -221,9 +214,4 @@ header h1 {
 .btnDeConfiguracoes a {
     text-decoration: none;
     color: var(--cor-principal);
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
 }
