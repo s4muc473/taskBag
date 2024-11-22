@@ -44,6 +44,7 @@ header h1 {
     justify-content: center;
     flex-direction: column;
     padding: 1%;
+    margin-bottom: 3vh;
 }
 
 .button-flutuante {
