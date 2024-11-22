@@ -152,7 +152,7 @@ header h1 {
     align-items: center;
     flex-direction: column;
     width: 97%;
-    height: 80vh;
+    height: 75vh;
     overflow-y: auto;
     scroll-behavior: smooth;
     margin-top: 5vh;
