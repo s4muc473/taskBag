@@ -5,6 +5,10 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 :root {
     --cor-principal: #000;
     --cor-secundaria: #fff;
@@ -43,7 +47,8 @@ header h1 {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 1%;
+    padding-top: 20vh;
+    scroll-behavior: auto;
 }
 
 .button-flutuante {
@@ -62,7 +67,7 @@ header h1 {
     padding: 1%;
     border-radius: 10px;
     position: relative;
-    margin-top: -375px;
+    margin-top: -360px;
     border: 2px solid var(--cor-principal);
     display: flex;
     justify-content: center; 
@@ -146,9 +151,12 @@ header h1 {
     align-items: center;
     flex-direction: column;
     width: 97%;
-    height: 40vh;
+    height: 80vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
     margin-top: 5vh;
     margin-bottom: 5vh;
+    border-radius: 10px;
 }
 
 .tarefa {
