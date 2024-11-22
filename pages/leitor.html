@@ -16,6 +16,7 @@
     <div>
         <input type="text" id="bloco_de_informacoes">
         <button onclick="implementarDados()">LER</button>
+        <button onclick="voltar()">VOLTAR</button>
         <textarea id="area_array_principal"></textarea>
         <button onclick="copiar()">COPIAR</button>
     </div>
@@ -31,13 +32,17 @@
         area_do_array_principal.innerHTML = arrayAtualDoSistema;
         
         function implementarDados() {
-            if (!leitor.value) {
-                arrayTarefas = [];
-            } else {
-                arrayTarefas = JSON.parse(leitor.value);
+            let confirmar = confirm('DESEJA PROSSEGUIR COM A IMPLEMENTAÇÃO DOS DADOS?')
+
+            if (confirmar) {
+                if (!leitor.value) {
+                    arrayTarefas = [];
+                } else {
+                    arrayTarefas = JSON.parse(leitor.value);
+                }
+                localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
+                window.location.href = 'home.html'
             }
-            localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
-            window.location.href = 'home.html'
         }
 
         function copiar() {
@@ -46,6 +51,10 @@
             }).catch(function(err) {
                 console.error("Erro ao copiar o texto: ", err);
             });
+        }
+
+        function voltar() {
+            window.location.href = "/pages/home.html";
         }
     </script>
 </body>
