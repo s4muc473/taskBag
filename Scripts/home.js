@@ -160,4 +160,8 @@ function deletaTarefa(data) {
     carrregarTarefas();
 }
 
+function ler_informacoes() {
+    window.location.href = 'leitor.html';
+}
+
 window.addEventListener("load", carrregarTarefas);

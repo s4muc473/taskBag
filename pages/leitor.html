@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskBag - Leitor</title>
+
+    <style>
+        #area_array_principal {
+            width: 98%;
+            height: 88vh;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="bloco_de_informacoes">
+        <button onclick="implementarDados()">LER</button>
+        <textarea id="area_array_principal"></textarea>
+        <button onclick="copiar()">COPIAR</button>
+    </div>
+
+    <script>
+        const localStorageKey = "tarefasDoTaskBag";
+        let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+        
+        let leitor = document.querySelector('#bloco_de_informacoes');
+        let area_do_array_principal = document.querySelector('#area_array_principal');
+        let arrayAtualDoSistema = localStorage.getItem('tarefasDoTaskBag')
+        
+        area_do_array_principal.innerHTML = arrayAtualDoSistema;
+        
+        function implementarDados() {
+            if (!leitor.value) {
+                arrayTarefas = [];
+            } else {
+                arrayTarefas = JSON.parse(leitor.value);
+            }
+            localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
+            window.location.href = 'home.html'
+        }
+
+        function copiar() {
+            navigator.clipboard.writeText(area_do_array_principal.value).then(function() {
+                alert("Texto copiado para a área de transferência!");
+            }).catch(function(err) {
+                console.error("Erro ao copiar o texto: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
