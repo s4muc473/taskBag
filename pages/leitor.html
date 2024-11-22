@@ -47,7 +47,8 @@
 
         function copiar() {
             navigator.clipboard.writeText(area_do_array_principal.value).then(function() {
-                alert("Texto copiado para a área de transferência!");
+                alert("BACKUP REALIZADO COM SUCESSO!");
+                window.location.href = 'home.html';
             }).catch(function(err) {
                 console.error("Erro ao copiar o texto: ", err);
             });

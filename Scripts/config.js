@@ -114,3 +114,13 @@ window.addEventListener("load",carrregarSolitacoes);
 function voltar() {
     window.location.href = "/pages/home.html";
 }
+
+function realizarBackup() {
+    let irParaPaginaDeBackup = confirm('Deseja Realizar o Bakcup');
+
+    if (irParaPaginaDeBackup) {
+        window.location.href = "leitor.html";
+    }
+}
+
+setInterval(realizarBackup, 60000)

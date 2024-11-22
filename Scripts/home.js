@@ -143,7 +143,6 @@ function carrregarTarefas() {
             elementosDaPaginaHome.caixaDeTarefas().appendChild(div);
         }
     }
-    realizarBackup();
 }
 
 function abrirTarefa(nomeDaTarefa,id) {
@@ -172,5 +171,7 @@ function realizarBackup() {
         window.location.href = "leitor.html";
     }
 }
+
+setInterval(realizarBackup, 60000)
 
 window.addEventListener("load", carrregarTarefas);
