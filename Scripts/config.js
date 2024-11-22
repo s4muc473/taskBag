@@ -98,7 +98,7 @@ function abrirMicroBloco(nomeDoSubBloco,id) {
 }
 
 function deletaSolitacao(data) {
-    let arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
+    let arrayInterno = arrayTarefas[id]['pontosDaTarefa']; // FI - PAI - ID-PAI - ARRAY-FI
     let index = arrayInterno.findIndex(x => x.title == data);
     arrayInterno.splice(index, 1);
 

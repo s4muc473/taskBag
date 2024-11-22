@@ -7,6 +7,10 @@ const elementosDaPagina = {
 const localStorageKey = "tarefasDoTaskBag"; // CHAVE DA API
 let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
 let id = localStorage.idDaTarefa;
+
+let idPonto = localStorage.idPonto;
+
+let idSub = localStorage.idDoSubBloco;
 var arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
 
 function editarNomeDaTarefa() {
@@ -22,7 +26,7 @@ function novaSolicitacao() {
     } else {
 
         let tarefaInterna = elementosDaPagina.inputDaSolicitacao().value;
-        arrayInterno[id]['microBlocos'].push({
+        arrayInterno[idSub]['microBlocos'].push({
             title: tarefaInterna,
             color: 'black',
         });
@@ -39,7 +43,7 @@ function carrregarSolitacoes() {
     elementosDaPagina.caixaDeSolicitacoes().innerHTML = "";
     elementosDaPagina.inputNomeDaTarefa().value = localStorage.nomeDaMateria;
 
-    let arraySubInterno = arrayInterno[id]['microBlocos'];
+    let arraySubInterno = arrayInterno[idSub]['microBlocos'];
 
     if (arrayTarefas.length == 0) {
         elementosDaPagina.caixaDeSolicitacoes().innerHTML = "Sub Máterias Aqui";
@@ -83,11 +87,11 @@ function carrregarSolitacoes() {
 }
 
 function deletaSolitacao(data) {
-    let arraySubInterno = arrayInterno[id]['microBlocos'];
+    let arraySubInterno = arrayInterno[idSub]['microBlocos']; // FI - PAI - ID-PAI - ARRAY-FI
     let index = arraySubInterno.findIndex(x => x.title == data);
     arraySubInterno.splice(index, 1);
 
-    arrayInterno[id]['microBlocos'] = arraySubInterno;
+    arrayInterno[idSub]['microBlocos'] = arraySubInterno;
     localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
 
     carrregarSolitacoes();
