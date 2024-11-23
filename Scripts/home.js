@@ -54,7 +54,7 @@ function novaTarefa(tipoDaTarefa) {
             pontosDaTarefa = [];
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
-            continuidade = 0;
+            continuidade = 10;
             simboloDaTarefa = '<i class="fa-solid fa-check"></i>';
             pontosDaTarefa = [];
         } else {
@@ -88,12 +88,16 @@ function carrregarTarefas() {
         elementosDaPaginaHome.caixaDeTarefas().innerHTML = "Tarefas Aqui";
     } else {
         for (let iterador = 0; iterador < arrayTarefas.length; iterador++) {
-            arrayTarefas[iterador].continue ++;
+            if (arrayTarefas[iterador].type = 'Tarefa') {
+                arrayTarefas[iterador].continue --;
+                if (arrayTarefas[iterador].continue < 0) {
+                    arrayTarefas[iterador].color = "red"
+                }
+            } else {
+                arrayTarefas[iterador].continue ++;
+            }
             localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
 
-            if (arrayTarefas[iterador].continue < 0) {
-                arrayTarefas[iterador].color = "red"
-            }
 
             const div = document.createElement('div');
             div.setAttribute('class', 'tarefa');
