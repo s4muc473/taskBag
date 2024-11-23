@@ -69,6 +69,7 @@ header h1 {
     border-radius: 10px;
     position: relative;
     margin-top: -360px;
+    margin-left: 2%;
     border: 2px solid var(--cor-principal);
     display: flex;
     justify-content: center; 
