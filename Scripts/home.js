@@ -88,7 +88,7 @@ function carrregarTarefas() {
         elementosDaPaginaHome.caixaDeTarefas().innerHTML = "Tarefas Aqui";
     } else {
         for (let iterador = 0; iterador < arrayTarefas.length; iterador++) {
-            if (arrayTarefas[iterador].type = 'Tarefa') {
+            if (arrayTarefas[iterador].type == 'Tarefa') {
                 arrayTarefas[iterador].continue --;
                 if (arrayTarefas[iterador].continue < 0) {
                     arrayTarefas[iterador].color = "red"
