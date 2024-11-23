@@ -54,7 +54,7 @@ function novaTarefa(tipoDaTarefa) {
             pontosDaTarefa = [];
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
-            continuidade = 10;
+            continuidade = 11;
             simboloDaTarefa = '<i class="fa-solid fa-check"></i>';
             pontosDaTarefa = [];
         } else {
