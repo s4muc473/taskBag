@@ -88,7 +88,7 @@ function carrregarTarefas() {
         elementosDaPaginaHome.caixaDeTarefas().innerHTML = "Tarefas Aqui";
     } else {
         for (let iterador = 0; iterador < arrayTarefas.length; iterador++) {
-            arrayTarefas[iterador].continue = 0;
+            arrayTarefas[iterador].continue ++;
             localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
 
             if (arrayTarefas[iterador].continue < 0) {
