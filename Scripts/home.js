@@ -49,17 +49,17 @@ function novaTarefa(tipoDaTarefa) {
         let corDaTarefa, continuidade, simboloDaTarefa;
         if (tipoDaTarefa == "Materia") {
             corDaTarefa = "blue";
-            continuidade = 200;
+            continuidade = 0;
             simboloDaTarefa = '<i class="fa-solid fa-book"></i>';
             pontosDaTarefa = [];
         } else if (tipoDaTarefa == "Tarefa") {
             corDaTarefa = "#000";
-            continuidade = 5;
+            continuidade = 0;
             simboloDaTarefa = '<i class="fa-solid fa-check"></i>';
             pontosDaTarefa = [];
         } else {
             corDaTarefa = "darkgreen";
-            continuidade = 125;
+            continuidade = 0;
             simboloDaTarefa = '<i class="fa-solid fa-diagram-project"></i>';
             pontosDaTarefa = [];
         }
@@ -88,7 +88,7 @@ function carrregarTarefas() {
         elementosDaPaginaHome.caixaDeTarefas().innerHTML = "Tarefas Aqui";
     } else {
         for (let iterador = 0; iterador < arrayTarefas.length; iterador++) {
-            arrayTarefas[iterador].continue --;
+            arrayTarefas[iterador].continue = 0;
             localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
 
             if (arrayTarefas[iterador].continue < 0) {
