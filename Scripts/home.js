@@ -129,9 +129,9 @@ function carrregarTarefas() {
 
             // ABRE A TAREFA NA NOVA PAGINA
             divSimboloDaTarefa.addEventListener('click',()=>{
+                arrayTarefas[iterador].continue ++;
                 const id = iterador;
                 abrirTarefa(arrayTarefas[iterador].title,id);
-                 arrayTarefas[iterador].continue ++;
             });
 
             const divCont = document.createElement('div');
