@@ -131,14 +131,7 @@ function carrregarTarefas() {
             divSimboloDaTarefa.addEventListener('click',()=>{
                 const id = iterador;
                 abrirTarefa(arrayTarefas[iterador].title,id);
-                if (arrayTarefas[iterador].type == 'Tarefa') {
-                    arrayTarefas[iterador].continue --;
-                    if (arrayTarefas[iterador].continue < 0) {
-                        arrayTarefas[iterador].color = "red"
-                    } else {
-                        arrayTarefas[iterador].continue ++;
-                    }
-                }
+                 arrayTarefas[iterador].continue ++;
             });
 
             const divCont = document.createElement('div');
