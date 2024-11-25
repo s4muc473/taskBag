@@ -177,6 +177,6 @@ function realizarBackup() {
     }
 }
 
-setInterval(realizarBackup, 90000)
+setInterval(realizarBackup, 600000)
 
 window.addEventListener("load", carrregarTarefas);
