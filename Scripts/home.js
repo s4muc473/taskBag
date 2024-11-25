@@ -93,11 +93,8 @@ function carrregarTarefas() {
                 if (arrayTarefas[iterador].continue < 0) {
                     arrayTarefas[iterador].color = "red"
                 }
-            } else {
-                arrayTarefas[iterador].continue ++;
             }
             localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
-
 
             const div = document.createElement('div');
             div.setAttribute('class', 'tarefa');
