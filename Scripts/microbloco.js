@@ -4,6 +4,16 @@ const elementosDaPagina = {
     caixaDeSolicitacoes: () => document.querySelector('.solicitacoes'),
 }
 
+function addSubBloco(event) {
+    const tecla = event.key; 
+      
+    if (tecla === 'Enter') {
+        novaSolicitacao();
+    }
+}
+
+window.addEventListener('keydown', addSubBloco);
+
 const localStorageKey = "tarefasDoTaskBag"; // CHAVE DA API
 let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
 let id = localStorage.idDaTarefa;
