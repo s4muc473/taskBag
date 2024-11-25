@@ -122,4 +122,4 @@ function realizarBackup() {
     }
 }
 
-setInterval(realizarBackup, 60000)
+setInterval(realizarBackup, 600000)
