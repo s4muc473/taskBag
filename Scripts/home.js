@@ -17,121 +17,106 @@ const elementosDaPaginaHome = {
     checkMateria: () => document.querySelector('.check-materia'),
     checkTarefa: () => document.querySelector('.check-tarefa'),
     checkProjeto: () => document.querySelector('.check-projeto'),
-}
+};
 
 const localStorageKey = "tarefasDoTaskBag";
 
 elementosDaPaginaHome.checkMateria().addEventListener('click', (evt) => {
-    novaTarefa("Materia");
+    novaArea("Materia");
     abrirJanelaParaCriarTarefa();
     elementosDaPaginaHome.inputNomeDaTarefa().value = "";
 });
 
 elementosDaPaginaHome.checkTarefa().addEventListener('click', (evt) => {
-    novaTarefa("Tarefa");
+    novaArea("Tarefa");
     abrirJanelaParaCriarTarefa();
     elementosDaPaginaHome.inputNomeDaTarefa().value = "";
 });
 
 elementosDaPaginaHome.checkProjeto().addEventListener('click', (evt) => {
-    novaTarefa("Projeto");
+    novaArea("Projeto");
     abrirJanelaParaCriarTarefa();
     elementosDaPaginaHome.inputNomeDaTarefa().value = "";
 });
 
-
-function novaTarefa(tipoDaTarefa) {
+function novaArea(tipoDaTarefa) {
     if (!elementosDaPaginaHome.inputNomeDaTarefa()) {
-        alert("Por favor infome o nome da tarefa");
+        alert("Por favor, informe o nome da tarefa");
     } else {
-        let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+        let arrayGeral = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
 
-        let corDaTarefa, continuidade, simboloDaTarefa;
+        let corDaArea, simboloDaArea, SubBlocosDaArea = [];
         if (tipoDaTarefa == "Materia") {
-            corDaTarefa = "blue";
-            continuidade = 200;
-            simboloDaTarefa = '<i class="fa-solid fa-book"></i>';
-            pontosDaTarefa = [];
+            corDaArea = "blue";
+            simboloDaArea = '<i class="fa-solid fa-book"></i>';
         } else if (tipoDaTarefa == "Tarefa") {
-            corDaTarefa = "#000";
-            continuidade = 5;
-            simboloDaTarefa = '<i class="fa-solid fa-check"></i>';
-            pontosDaTarefa = [];
+            corDaArea = "#000";
+            simboloDaArea = '<i class="fa-solid fa-check"></i>';
         } else {
-            corDaTarefa = "darkgreen";
-            continuidade = 125;
-            simboloDaTarefa = '<i class="fa-solid fa-diagram-project"></i>';
-            pontosDaTarefa = [];
+            corDaArea = "darkgreen";
+            simboloDaArea = '<i class="fa-solid fa-diagram-project"></i>';
         }
 
-        arrayTarefas.push({
+        arrayGeral.push({
             title: elementosDaPaginaHome.inputNomeDaTarefa().value,
-            color: corDaTarefa,
-            continue: continuidade,
+            color: corDaArea,
+            qtdBlocos: 0,
             type: tipoDaTarefa,
-            symbol: simboloDaTarefa,
-            pontosDaTarefa: pontosDaTarefa,
+            symbol: simboloDaArea,
+            SubBlocosDaArea: [],
         });
-        localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
-        carrregarTarefas();
+
+        localStorage.setItem(localStorageKey, JSON.stringify(arrayGeral));
+        carregarTarefas();
         elementosDaPaginaHome.JanelaParaCriarTarefa().classList.remove('JanelaParaCriarTarefaAberta');
     }
 }
 
-function carrregarTarefas() {
-    console.log('funcionando...');
-
-    let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+function carregarTarefas() {
+    let arrayGeral = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
     elementosDaPaginaHome.caixaDeTarefas().innerHTML = "";
-    
-    if (arrayTarefas.length == 0) {
+
+    if (arrayGeral.length == 0) {
         elementosDaPaginaHome.caixaDeTarefas().innerHTML = "Tarefas Aqui";
     } else {
-        for (let iterador = 0; iterador < arrayTarefas.length; iterador++) {
-            arrayTarefas[iterador].continue --;
-            localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
-
-            if (arrayTarefas[iterador].continue < 0) {
-                arrayTarefas[iterador].color = "red"
-            }
-
+        for (let iterador = 0; iterador < arrayGeral.length; iterador++) {
             const div = document.createElement('div');
             div.setAttribute('class', 'tarefa');
-            div.style.backgroundColor = arrayTarefas[iterador].color;
+            div.style.backgroundColor = arrayGeral[iterador].color;
 
             const nomeDaTarefa = document.createElement('p');
-            nomeDaTarefa.innerHTML = `${arrayTarefas[iterador]['title']}`;
+            nomeDaTarefa.innerHTML = `${arrayGeral[iterador]['title']}`;
 
             const divBotao = document.createElement('div');
 
             const concluir = document.createElement('button');
             concluir.innerHTML = '<i style="color: springgreen;font-size: 19px;" class="fa-solid fa-check"></i>';
             concluir.addEventListener("click", () => {
-                deletaTarefa(arrayTarefas[iterador]['title']);
+                deletaTarefa(arrayGeral[iterador]['title']);
             });
 
             const deletar = document.createElement('button');
             deletar.innerHTML = '<i style="color: #FE5D9F" class="fa-solid fa-x"></i>';
             deletar.addEventListener("click", () => {
-                deletaTarefa(arrayTarefas[iterador]['title']);
+                deletaTarefa(arrayGeral[iterador]['title']);
             });
 
             const divBotaoECont = document.createElement('div');
             divBotaoECont.setAttribute('class', 'divBotaoECont');
 
             const divSimboloDaTarefa = document.createElement('div');
-            divSimboloDaTarefa.setAttribute('class','simboloDaTask');
-            divSimboloDaTarefa.innerHTML = arrayTarefas[iterador].symbol;
+            divSimboloDaTarefa.setAttribute('class', 'simboloDaTask');
+            divSimboloDaTarefa.innerHTML = arrayGeral[iterador].symbol;
 
             // ABRE A TAREFA NA NOVA PAGINA
-            divSimboloDaTarefa.addEventListener('click',()=>{
+            divSimboloDaTarefa.addEventListener('click', () => {
                 const id = iterador;
-                abrirTarefa(arrayTarefas[iterador].title,id);
+                abrirTarefa(arrayGeral[iterador].title, id);
             });
 
             const divCont = document.createElement('div');
             divCont.setAttribute('class', 'divCont');
-            divCont.innerHTML = arrayTarefas[iterador].continue;
+            divCont.innerHTML = arrayGeral[iterador].qtdBlocos;
 
             div.appendChild(nomeDaTarefa);
             divBotao.appendChild(concluir);
@@ -145,19 +130,19 @@ function carrregarTarefas() {
     }
 }
 
-function abrirTarefa(nomeDaTarefa,id) {
+function abrirTarefa(nomeDaTarefa, id) {
     window.location.href = "config.html";
     localStorage.nomeDaMateria = nomeDaTarefa;
     localStorage.idDaTarefa = id;
 }
 
 function deletaTarefa(data) {
-    let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
-    let index = arrayTarefas.findIndex(x => x.title == data);
-    arrayTarefas.splice(index, 1);
-    localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
+    let arrayGeral = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+    let index = arrayGeral.findIndex(x => x.title == data);
+    arrayGeral.splice(index, 1);
+    localStorage.setItem(localStorageKey, JSON.stringify(arrayGeral));
 
-    carrregarTarefas();
+    carregarTarefas();
 }
 
 function ler_informacoes() {
@@ -165,13 +150,13 @@ function ler_informacoes() {
 }
 
 function realizarBackup() {
-    let irParaPaginaDeBackup = confirm('Deseja Realizar o Bakcup');
+    let irParaPaginaDeBackup = confirm('Deseja realizar o Backup?');
 
     if (irParaPaginaDeBackup) {
         window.location.href = "leitor.html";
     }
 }
 
-setInterval(realizarBackup, 60000)
+setInterval(realizarBackup, 60000);
 
-window.addEventListener("load", carrregarTarefas);
+window.addEventListener("load", carregarTarefas);

@@ -5,18 +5,18 @@ const elementosDaPagina = {
 }
 
 const localStorageKey = "tarefasDoTaskBag"; // CHAVE DA API
-let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
+let arrayGeral = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
 let id = localStorage.idDaTarefa;
 
 let idPonto = localStorage.idPonto;
 
 let idSub = localStorage.idDoSubBloco;
-var arrayInterno = arrayTarefas[id]['pontosDaTarefa'];
+var arrayInterno = arrayGeral[id]['pontosDaTarefa'];
 
 function editarNomeDaTarefa() {
     let nomeDaTarefa = elementosDaPagina.inputNomeDaTarefa().value;
     arrayInterno[id]['title'] = nomeDaTarefa;
-    localStorage.setItem(localStorageKey,JSON.stringify(arrayTarefas));
+    localStorage.setItem(localStorageKey,JSON.stringify(arrayGeral));
 }
 
 function novaSolicitacao() {
@@ -32,20 +32,20 @@ function novaSolicitacao() {
         });
 
 
-        localStorage.setItem(localStorageKey,JSON.stringify(arrayTarefas));
-        carrregarSolitacoes();
+        localStorage.setItem(localStorageKey,JSON.stringify(arrayGeral));
+        carregarSolitacoes();
         elementosDaPagina.inputDaSolicitacao().value = "";
     }
 }
 
-function carrregarSolitacoes() {
+function carregarSolitacoes() {
     console.log('funcionando...');
     elementosDaPagina.caixaDeSolicitacoes().innerHTML = "";
     elementosDaPagina.inputNomeDaTarefa().value = localStorage.nomeDaMateria;
 
     let arraySubInterno = arrayInterno[idSub]['microBlocos'];
 
-    if (arrayTarefas.length == 0) {
+    if (arrayGeral.length == 0) {
         elementosDaPagina.caixaDeSolicitacoes().innerHTML = "Sub Máterias Aqui";
     } else {
         for (let iterador = 0;iterador < arraySubInterno.length;iterador++) {
@@ -61,9 +61,9 @@ function carrregarSolitacoes() {
                 } else if (cor == 'blue') {
                     evt.target.classList.remove('concluido');
                     arraySubInterno[iterador]['color'] = 'black';
-                    carrregarSolitacoes()
+                    carregarSolitacoes()
                 }
-                localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
+                localStorage.setItem(localStorageKey, JSON.stringify(arrayGeral));
             })
     
             const nomeDaSolicitacao = document.createElement('p');
@@ -92,13 +92,13 @@ function deletaSolitacao(data) {
     arraySubInterno.splice(index, 1);
 
     arrayInterno[idSub]['microBlocos'] = arraySubInterno;
-    localStorage.setItem(localStorageKey, JSON.stringify(arrayTarefas));
+    localStorage.setItem(localStorageKey, JSON.stringify(arrayGeral));
 
-    carrregarSolitacoes();
+    carregarSolitacoes();
     
 }
 
-window.addEventListener("load",carrregarSolitacoes);
+window.addEventListener("load",carregarSolitacoes);
 
 function voltar() {
     window.location.href = "/pages/config.html";

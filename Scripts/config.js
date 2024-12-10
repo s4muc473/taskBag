@@ -4,6 +4,16 @@ const elementosDaPagina = {
     caixaDeSolicitacoes: () => document.querySelector('.solicitacoes'),
 }
 
+function addMicroBloco(event) {
+    const tecla = event.key; 
+    
+    if (tecla === 'Enter') {
+        novaSolicitacao();
+    }
+}
+
+window.addEventListener('keydown', addMicroBloco);
+
 const localStorageKey = "tarefasDoTaskBag"; // CHAVE DA API
 let arrayTarefas = JSON.parse(localStorage.getItem(localStorageKey) || "[]"); // PEGA OS DADOS DA API
 let id = localStorage.idDaTarefa;
@@ -114,13 +124,3 @@ window.addEventListener("load",carrregarSolitacoes);
 function voltar() {
     window.location.href = "/pages/home.html";
 }
-
-function realizarBackup() {
-    let irParaPaginaDeBackup = confirm('Deseja Realizar o Bakcup');
-
-    if (irParaPaginaDeBackup) {
-        window.location.href = "leitor.html";
-    }
-}
-
-setInterval(realizarBackup, 60000)
